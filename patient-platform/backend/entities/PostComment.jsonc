@@ -1,0 +1,58 @@
+{
+  "name": "PostComment",
+  "type": "object",
+  "title": "Post Comment",
+  "description": "A comment on a community post",
+  "properties": {
+    "post_id": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "privacy": {
+      "type": "string",
+      "enum": [
+        "public",
+        "anonymous"
+      ],
+      "default": "public"
+    }
+  },
+  "required": [
+    "post_id",
+    "content",
+    "author_name"
+  ],
+  "rls": {
+    "create": {},
+    "read": {},
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

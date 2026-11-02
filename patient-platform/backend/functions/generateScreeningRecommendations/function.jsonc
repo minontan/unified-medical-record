@@ -1,0 +1,4 @@
+{
+  "name": "generateScreeningRecommendations",
+  "entry": "entry.ts"
+}

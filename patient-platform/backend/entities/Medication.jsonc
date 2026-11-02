@@ -1,0 +1,81 @@
+{
+  "name": "Medication",
+  "type": "object",
+  "title": "Medication",
+  "description": "A medication record for tracking current and past medications",
+  "properties": {
+    "medication_name": {
+      "type": "string",
+      "description": "Brand or generic name of the medication"
+    },
+    "brand_name": {
+      "type": "string",
+      "description": "Brand name if different"
+    },
+    "generic_name": {
+      "type": "string",
+      "description": "Generic name if different"
+    },
+    "dosage": {
+      "type": "string",
+      "description": "Dosage information (e.g. 10mg, 500mg twice daily)"
+    },
+    "frequency": {
+      "type": "string",
+      "description": "How often taken (e.g. once daily, twice daily)"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When medication was stopped (for past medications)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether currently taking this medication"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "hypertension",
+        "diabetes",
+        "hyperlipidaemia",
+        "general",
+        "other"
+      ]
+    },
+    "prescribing_doctor": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Uploaded image of medication/prescription"
+    }
+  },
+  "required": [
+    "medication_name",
+    "dosage",
+    "is_active"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

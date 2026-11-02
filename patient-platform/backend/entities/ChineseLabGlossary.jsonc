@@ -1,0 +1,66 @@
+{
+  "name": "ChineseLabGlossary",
+  "type": "object",
+  "title": "Chinese Lab Glossary",
+  "description": "User-contributed glossary mapping Chinese lab term characters to English equivalents",
+  "properties": {
+    "chinese_term": {
+      "type": "string",
+      "description": "Chinese characters (simplified or traditional) for the lab test name or category"
+    },
+    "english_term": {
+      "type": "string",
+      "description": "Standardised English translation of the lab term"
+    },
+    "variant": {
+      "type": "string",
+      "enum": [
+        "simplified",
+        "traditional",
+        "both"
+      ],
+      "default": "both",
+      "description": "Which Chinese script variant this entry covers"
+    },
+    "category": {
+      "type": "string",
+      "description": "Lab panel category e.g. Haematology, Liver Function"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "seed",
+        "llm_learned",
+        "user_added"
+      ],
+      "default": "llm_learned"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes or clinical context for this glossary entry"
+    }
+  },
+  "required": [
+    "chinese_term",
+    "english_term"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

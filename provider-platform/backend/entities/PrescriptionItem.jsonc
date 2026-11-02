@@ -1,0 +1,85 @@
+{
+  "name": "PrescriptionItem",
+  "type": "object",
+  "properties": {
+    "prescription_id": {
+      "type": "string"
+    },
+    "drug_code": {
+      "type": "string"
+    },
+    "drug_name": {
+      "type": "string"
+    },
+    "route": {
+      "type": "string"
+    },
+    "dose": {
+      "type": "string"
+    },
+    "dosage_form": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "string"
+    },
+    "uom": {
+      "type": "string"
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    },
+    "approval_date": {
+      "type": "string"
+    },
+    "source_raw": {
+      "type": "object"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "prescription_id"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

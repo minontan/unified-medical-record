@@ -1,0 +1,120 @@
+{
+  "name": "Connection",
+  "type": "object",
+  "title": "Connection",
+  "description": "Friend/family connection or caregiver relationship between users",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user who initiated the connection"
+    },
+    "friend_email": {
+      "type": "string",
+      "description": "Email of the friend/family/caregiver"
+    },
+    "friend_name": {
+      "type": "string",
+      "description": "Display name of the other person"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined"
+      ],
+      "default": "pending"
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "friend",
+        "family",
+        "other",
+        "caregiver"
+      ],
+      "default": "friend"
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Optional nickname for the connection"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes about this connection"
+    },
+    "caregiver_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "measurements_read",
+          "measurements_write",
+          "lab_results_read",
+          "lab_results_write",
+          "medications_read",
+          "medications_write",
+          "appointments_read",
+          "appointments_write",
+          "womens_health_read",
+          "womens_health_write",
+          "medical_documents_read",
+          "medical_documents_write",
+          "msk_read",
+          "msk_write"
+        ]
+      },
+      "description": "Permissions granted to the caregiver (only used when relationship=caregiver)"
+    },
+    "patient_email": {
+      "type": "string",
+      "description": "The patient whose health data is being managed (populated when relationship=caregiver)"
+    },
+    "caregiver_email": {
+      "type": "string",
+      "description": "The caregiver managing the patient's data (populated when relationship=caregiver)"
+    }
+  },
+  "required": [
+    "user_email",
+    "friend_email",
+    "friend_name",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "data.friend_email": "{{user.email}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "data.friend_email": "{{user.email}}"
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "data.friend_email": "{{user.email}}"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "StandardizedLabTest",
+  "type": "object",
+  "title": "Standardized Lab Test",
+  "description": "A user-defined standardized test name that groups raw lab result test names for trending",
+  "properties": {
+    "display_name": {
+      "type": "string",
+      "description": "User-friendly standardized name (e.g. Hemoglobin, Fasting Glucose)"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of raw test_name strings from LabResult that map to this standard"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Standardized unit for display on trend chart"
+    },
+    "reference_range_low": {
+      "type": "number"
+    },
+    "reference_range_high": {
+      "type": "number"
+    },
+    "category": {
+      "type": "string",
+      "description": "Test category e.g. Haematology, Lipid Profile"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional description or clinical context for this test"
+    }
+  },
+  "required": [
+    "display_name"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "name": "generateMedicalInsights",
+  "entry": "entry.ts"
+}

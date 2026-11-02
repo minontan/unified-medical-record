@@ -1,0 +1,118 @@
+{
+  "name": "PredictiveModel",
+  "type": "object",
+  "title": "Predictive Model",
+  "description": "Stores computed predictive model snapshots for a user's health trajectories and risk scores",
+  "properties": {
+    "model_type": {
+      "type": "string",
+      "enum": [
+        "hba1c_trajectory",
+        "bp_trajectory",
+        "lipid_trajectory",
+        "ckd_risk",
+        "ascvd_risk",
+        "frax_risk",
+        "sarcopenia_index",
+        "metabolic_age",
+        "frailty_index"
+      ],
+      "description": "Type of predictive model computed"
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this model snapshot was computed"
+    },
+    "risk_score": {
+      "type": "number",
+      "description": "Primary risk score 0-100 or clinical scale value"
+    },
+    "risk_category": {
+      "type": "string",
+      "enum": [
+        "low",
+        "borderline",
+        "moderate",
+        "high",
+        "very_high"
+      ],
+      "description": "Risk category classification"
+    },
+    "trend_direction": {
+      "type": "string",
+      "enum": [
+        "improving",
+        "stable",
+        "worsening",
+        "insufficient_data"
+      ],
+      "description": "Direction of the trend over the analysis window"
+    },
+    "trend_slope": {
+      "type": "number",
+      "description": "Linear regression slope of the biomarker trend (units/month)"
+    },
+    "predicted_values": {
+      "type": "string",
+      "description": "JSON array of {date, predicted, lower_ci, upper_ci} for trajectory chart"
+    },
+    "actual_values": {
+      "type": "string",
+      "description": "JSON array of {date, value} historical actual data points used"
+    },
+    "key_drivers": {
+      "type": "string",
+      "description": "JSON array of strings \u2014 top contributing risk factors"
+    },
+    "clinical_score_detail": {
+      "type": "string",
+      "description": "JSON object of intermediate scoring variables (e.g. ASCVD inputs)"
+    },
+    "data_points_used": {
+      "type": "integer",
+      "description": "Number of data points used in computation"
+    },
+    "analysis_window_months": {
+      "type": "integer",
+      "description": "How many months of history were analysed"
+    },
+    "next_review_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Recommended date to re-run this model"
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Algorithm version string e.g. v1.0"
+    },
+    "is_latest": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this is the most recent computation for this model_type"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes or context about this model run"
+    }
+  },
+  "required": [
+    "model_type",
+    "computed_at"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "name": "DiagnosticCentre",
+  "type": "object",
+  "title": "Diagnostic Centre",
+  "description": "A diagnostic centre offering blood testing and/or radiology services",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "blood_testing",
+          "radiology",
+          "ecg",
+          "ultrasound",
+          "xray",
+          "mri",
+          "ct_scan"
+        ]
+      }
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "opening_hours": {
+      "type": "string",
+      "description": "e.g. Mon-Fri 8am-6pm, Sat 8am-1pm"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "accepts_walk_in": {
+      "type": "boolean",
+      "default": true
+    },
+    "appointment_required": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "services",
+    "address"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "name": "MusculoskeletalAssessment",
+  "type": "object",
+  "title": "Musculoskeletal Assessment",
+  "description": "BMD, sarcopenia, and frailty assessment data for bone-muscle-frailty risk analysis",
+  "properties": {
+    "assessed_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of assessment"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Age at time of assessment"
+    },
+    "sex": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "height_cm": {
+      "type": "number",
+      "description": "Height in centimetres"
+    },
+    "weight_kg": {
+      "type": "number",
+      "description": "Weight in kilograms"
+    },
+    "bmd_tscore": {
+      "type": "number",
+      "description": "DXA T-score (total hip or femoral neck)"
+    },
+    "bmd_zscore": {
+      "type": "number",
+      "description": "DXA Z-score (for premenopausal women / younger men)"
+    },
+    "bmd_site": {
+      "type": "string",
+      "enum": [
+        "total_hip",
+        "femoral_neck",
+        "lumbar_spine"
+      ],
+      "description": "Site of BMD measurement"
+    },
+    "fragility_fracture": {
+      "type": "boolean",
+      "description": "History of fragility fracture"
+    },
+    "handgrip_kg": {
+      "type": "number",
+      "description": "Handgrip strength in kg (dominant hand)"
+    },
+    "asmi": {
+      "type": "number",
+      "description": "Appendicular Skeletal Muscle Index via BIA (kg/m\u00b2)"
+    },
+    "asm_bmi": {
+      "type": "number",
+      "description": "ASM/BMI ratio from BIA (kg/BMI)"
+    },
+    "chair_stand_time_s": {
+      "type": "number",
+      "description": "5-time chair stand test time in seconds"
+    },
+    "gait_speed_ms": {
+      "type": "number",
+      "description": "Usual gait speed in m/s"
+    },
+    "sarc_f_score": {
+      "type": "integer",
+      "description": "SARC-F questionnaire score (0-10)"
+    },
+    "vitamin_d_ngml": {
+      "type": "number",
+      "description": "Serum 25(OH)D level in ng/mL"
+    },
+    "protein_intake_gkgday": {
+      "type": "number",
+      "description": "Estimated daily protein intake (g/kg/day)"
+    },
+    "exercise_sessions_per_week": {
+      "type": "integer",
+      "description": "Current resistance/weight-bearing exercise sessions per week"
+    },
+    "prior_fracture_sites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "spine",
+          "hip",
+          "wrist",
+          "pelvis",
+          "other"
+        ]
+      }
+    },
+    "secondary_causes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ckd",
+          "diabetes",
+          "malabsorption",
+          "glucocorticoids",
+          "hypogonadism",
+          "hyperthyroidism",
+          "none"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "assessed_at",
+    "age",
+    "sex"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

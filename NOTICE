@@ -1,0 +1,22 @@
+Unified Medical Record
+Copyright 2026 MedNex Pte Ltd
+
+This product includes software developed by MedNex Pte Ltd.
+
+The patient-platform and provider-platform applications incorporate third-party
+software under permissive licenses (MIT, ISC), including but not limited to:
+@base44/sdk, React, Vite, TanStack Query, Tailwind CSS, Radix UI primitives
+(via shadcn/ui), react-quill / react-quill-new, jsPDF, docx, i18next,
+react-i18next, Zod, lucide-react, and React Router. The full license text for
+each dependency is available in its own repository (see package-lock.json;
+runtime-imported packages such as docx are documented in docs/REPO_NOTES.md).
+
+This software is clinical decision-support software and is NOT a medical
+device. It has not been evaluated or approved by the FDA, HSA, or any other
+regulatory authority, and no clinical validation is claimed for any algorithm
+or embedded guideline content. See the Disclaimer section of README.md.
+
+The names "MedNex" and "MedNex Pte Ltd" and the project logos are trademarks
+of MedNex Pte Ltd and are not covered by the Apache License grant. You may
+fork and redistribute the code under Apache-2.0, but you may not present your
+distribution as an official MedNex product.

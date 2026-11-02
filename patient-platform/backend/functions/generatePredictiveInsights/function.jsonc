@@ -1,0 +1,4 @@
+{
+  "name": "generatePredictiveInsights",
+  "entry": "entry.ts"
+}

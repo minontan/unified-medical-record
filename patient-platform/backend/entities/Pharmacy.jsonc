@@ -1,0 +1,67 @@
+{
+  "name": "Pharmacy",
+  "type": "object",
+  "title": "Pharmacy",
+  "description": "A pharmacy with optional dispensing capabilities",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "opening_hours": {
+      "type": "string",
+      "description": "e.g. Mon-Fri 9am-9pm, Sat-Sun 9am-6pm"
+    },
+    "is_dispensing": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the pharmacy has dispensing capabilities"
+    },
+    "accepts_walk_in": {
+      "type": "boolean",
+      "default": true
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "address"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

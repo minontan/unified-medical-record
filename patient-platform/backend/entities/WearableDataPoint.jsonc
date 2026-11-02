@@ -1,0 +1,77 @@
+{
+  "name": "WearableDataPoint",
+  "type": "object",
+  "title": "Wearable Data Point",
+  "description": "Future-proofed storage for continuous wearable and biometric stream data",
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "apple_health",
+        "garmin",
+        "fitbit",
+        "samsung_health",
+        "whoop",
+        "manual",
+        "other"
+      ],
+      "description": "Device or platform source"
+    },
+    "metric": {
+      "type": "string",
+      "enum": [
+        "heart_rate",
+        "hrv_rmssd",
+        "spo2",
+        "steps",
+        "active_calories",
+        "sleep_total_min",
+        "sleep_deep_min",
+        "sleep_rem_min",
+        "respiratory_rate",
+        "skin_temp_celsius",
+        "vo2max_estimate",
+        "glucose_cgm",
+        "blood_pressure_systolic",
+        "blood_pressure_diastolic"
+      ],
+      "description": "The biometric metric being recorded"
+    },
+    "value": {
+      "type": "number",
+      "description": "Numeric value of the measurement"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the measurement"
+    },
+    "device_id": {
+      "type": "string",
+      "description": "Optional device identifier"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "source",
+    "metric",
+    "value",
+    "recorded_at"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

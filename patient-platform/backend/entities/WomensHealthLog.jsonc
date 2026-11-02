@@ -1,0 +1,138 @@
+{
+  "name": "WomensHealthLog",
+  "type": "object",
+  "title": "Women's Health Log",
+  "description": "Tracks menstrual cycle, ovulation, pregnancy tests and pregnancy health data",
+  "properties": {
+    "log_type": {
+      "type": "string",
+      "enum": [
+        "menstrual_cycle",
+        "ovulation_test",
+        "pregnancy_test",
+        "pregnancy_blood_marker",
+        "pregnancy_immunisation",
+        "pregnancy_bp",
+        "pregnancy_glucose"
+      ]
+    },
+    "logged_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "result": {
+      "type": "string",
+      "description": "For test strips: positive/negative. For cycle: start/end/spotting"
+    },
+    "cycle_day": {
+      "type": "integer",
+      "description": "Day of menstrual cycle"
+    },
+    "cycle_length_days": {
+      "type": "integer",
+      "description": "Total cycle length in days"
+    },
+    "period_flow": {
+      "type": "string",
+      "enum": [
+        "light",
+        "medium",
+        "heavy",
+        "spotting"
+      ]
+    },
+    "marker_type": {
+      "type": "string",
+      "enum": [
+        "folic_acid",
+        "iron",
+        "ferritin",
+        "b12",
+        "vitamin_d",
+        "haemoglobin",
+        "tsh",
+        "other"
+      ]
+    },
+    "marker_value": {
+      "type": "number"
+    },
+    "marker_unit": {
+      "type": "string"
+    },
+    "immunisation_name": {
+      "type": "string",
+      "enum": [
+        "influenza",
+        "tdap",
+        "covid19",
+        "hepatitis_b",
+        "rubella_check",
+        "other"
+      ]
+    },
+    "immunisation_status": {
+      "type": "string",
+      "enum": [
+        "received",
+        "due",
+        "declined",
+        "checked"
+      ]
+    },
+    "immunisation_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "bp_systolic": {
+      "type": "number"
+    },
+    "bp_diastolic": {
+      "type": "number"
+    },
+    "glucose_value": {
+      "type": "number"
+    },
+    "glucose_unit": {
+      "type": "string",
+      "enum": [
+        "mmol/L",
+        "mg/dL"
+      ]
+    },
+    "glucose_context": {
+      "type": "string",
+      "enum": [
+        "fasting",
+        "1hr_post_meal",
+        "2hr_post_meal",
+        "random"
+      ]
+    },
+    "gestational_week": {
+      "type": "integer",
+      "description": "Week of pregnancy"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "log_type",
+    "logged_at"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

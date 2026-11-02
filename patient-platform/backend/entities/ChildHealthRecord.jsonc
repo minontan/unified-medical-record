@@ -1,0 +1,114 @@
+{
+  "name": "ChildHealthRecord",
+  "type": "object",
+  "title": "Child Health Record",
+  "description": "Health log entry for a child \u2014 covers measurements, vaccinations, growth, and general visits",
+  "properties": {
+    "child_id": {
+      "type": "string",
+      "description": "ID of the ChildProfile this record belongs to"
+    },
+    "record_type": {
+      "type": "string",
+      "enum": [
+        "growth",
+        "vaccination",
+        "measurement",
+        "visit",
+        "medication",
+        "allergy_event",
+        "dental",
+        "vision",
+        "development_milestone"
+      ],
+      "description": "Type of health record"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the record"
+    },
+    "height_cm": {
+      "type": "number",
+      "description": "Height in cm (growth records)"
+    },
+    "weight_kg": {
+      "type": "number",
+      "description": "Weight in kg (growth records)"
+    },
+    "head_circumference_cm": {
+      "type": "number",
+      "description": "Head circumference in cm (infants)"
+    },
+    "vaccine_name": {
+      "type": "string",
+      "description": "Name of vaccine administered"
+    },
+    "vaccine_dose": {
+      "type": "string",
+      "description": "Dose number or description e.g. 1st dose, booster"
+    },
+    "vaccine_batch": {
+      "type": "string",
+      "description": "Batch/lot number of vaccine"
+    },
+    "measurement_type": {
+      "type": "string",
+      "enum": [
+        "blood_pressure",
+        "heart_rate",
+        "temperature",
+        "blood_glucose",
+        "spo2",
+        "other"
+      ],
+      "description": "Type of measurement (measurement records)"
+    },
+    "measurement_value": {
+      "type": "number"
+    },
+    "measurement_value_secondary": {
+      "type": "number",
+      "description": "Secondary value e.g. diastolic BP"
+    },
+    "measurement_unit": {
+      "type": "string"
+    },
+    "visit_reason": {
+      "type": "string",
+      "description": "Reason for visit/consultation"
+    },
+    "clinic_name": {
+      "type": "string"
+    },
+    "doctor_name": {
+      "type": "string"
+    },
+    "milestone_description": {
+      "type": "string",
+      "description": "Development milestone achieved e.g. first steps, first words"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "child_id",
+    "record_type",
+    "recorded_at"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

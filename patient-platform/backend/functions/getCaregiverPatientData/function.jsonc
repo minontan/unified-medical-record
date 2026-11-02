@@ -1,0 +1,4 @@
+{
+  "name": "getCaregiverPatientData",
+  "entry": "entry.ts"
+}

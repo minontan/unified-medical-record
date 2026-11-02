@@ -1,0 +1,62 @@
+{
+  "name": "DrugGlossary",
+  "type": "object",
+  "title": "Drug Glossary",
+  "description": "Singapore SDD drug reference glossary for medication name autocomplete",
+  "properties": {
+    "concept_id": {
+      "type": "string",
+      "description": "SDD Concept ID"
+    },
+    "drug_name": {
+      "type": "string",
+      "description": "Full drug name from SDD (col_1 / Drug_Name)"
+    },
+    "generic_name": {
+      "type": "string",
+      "description": "Simplified generic name (Drug_Name2 / col_2)"
+    },
+    "brand_name": {
+      "type": "string",
+      "description": "Brand name (col_3)"
+    },
+    "drug_form": {
+      "type": "string",
+      "description": "Dosage form (e.g. Tablet, Infusion)"
+    },
+    "strength": {
+      "type": "string",
+      "description": "Strength e.g. 10mg"
+    },
+    "route": {
+      "type": "string",
+      "description": "Administration route e.g. Oral, Intravenous"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional additional notes or clinical information about this drug"
+    }
+  },
+  "required": [
+    "drug_name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

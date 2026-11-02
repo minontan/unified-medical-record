@@ -1,0 +1,101 @@
+{
+  "name": "UserHealthProfile",
+  "type": "object",
+  "title": "User Health Profile",
+  "description": "Demographic and risk factor data used to generate personalised screening recommendations",
+  "properties": {
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "biological_sex": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "smoking_status": {
+      "type": "string",
+      "enum": [
+        "never",
+        "current",
+        "quit_lt_15y",
+        "quit_gt_15y"
+      ],
+      "description": "Current smoking status"
+    },
+    "pack_years": {
+      "type": "number",
+      "description": "Lifetime smoking history in pack-years"
+    },
+    "apcs_score": {
+      "type": "integer",
+      "description": "Asia Pacific Colorectal Screening score (0\u20137)"
+    },
+    "sexually_active_ever": {
+      "type": "boolean",
+      "description": "Has ever been sexually active (relevant for cervical screening)"
+    },
+    "family_history_cancers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cancer types in first-degree relatives (e.g. breast, colorectal)"
+    },
+    "personal_cancer_history": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Any personal history of cancer diagnoses"
+    },
+    "high_risk_breast": {
+      "type": "boolean",
+      "description": "Identified as high risk for breast cancer (e.g. BRCA mutation, strong family history)"
+    },
+    "alcohol_consumption": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "bmi": {
+      "type": "number"
+    },
+    "allergies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Known allergies (medications, foods, environmental, etc.)"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional personal notes or additional health context"
+    }
+  },
+  "required": [
+    "date_of_birth",
+    "biological_sex"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

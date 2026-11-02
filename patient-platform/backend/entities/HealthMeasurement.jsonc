@@ -1,0 +1,70 @@
+{
+  "name": "HealthMeasurement",
+  "type": "object",
+  "title": "Health Measurement",
+  "description": "A health measurement record for tracking chronic disease indicators",
+  "properties": {
+    "measurement_type": {
+      "type": "string",
+      "enum": [
+        "blood_pressure",
+        "blood_glucose",
+        "total_cholesterol",
+        "ldl_cholesterol",
+        "hdl_cholesterol",
+        "triglycerides",
+        "hba1c",
+        "weight",
+        "heart_rate"
+      ]
+    },
+    "value_primary": {
+      "type": "number",
+      "description": "Primary measurement value (e.g. systolic BP, glucose level)"
+    },
+    "value_secondary": {
+      "type": "number",
+      "description": "Secondary value (e.g. diastolic BP)"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "measured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "hypertension",
+        "diabetes",
+        "hyperlipidaemia",
+        "general"
+      ]
+    }
+  },
+  "required": [
+    "measurement_type",
+    "value_primary",
+    "unit",
+    "measured_at",
+    "condition"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

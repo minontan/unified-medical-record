@@ -1,0 +1,103 @@
+{
+  "name": "ScreeningProtocol",
+  "type": "object",
+  "title": "Cancer Screening Protocol",
+  "description": "Guidelines for cancer screening based on various criteria",
+  "properties": {
+    "cancer_type": {
+      "type": "string",
+      "enum": [
+        "breast",
+        "cervical",
+        "colorectal",
+        "lung"
+      ]
+    },
+    "test_type": {
+      "type": "string",
+      "description": "Type of screening test (e.g., Mammogram, HPV DNA test, FIT, LDCT)"
+    },
+    "frequency": {
+      "type": "string",
+      "description": "How often the screening should occur"
+    },
+    "evidence_level": {
+      "type": "string",
+      "description": "Level of evidence supporting the recommendation"
+    },
+    "min_age": {
+      "type": "integer",
+      "description": "Minimum age for this protocol"
+    },
+    "max_age": {
+      "type": "integer",
+      "description": "Maximum age for this protocol"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "all"
+      ],
+      "default": "all"
+    },
+    "required_risk_factors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Risk factors that must be present (e.g. high_risk, smoker)"
+    },
+    "min_pack_years": {
+      "type": "integer",
+      "description": "Minimum pack-years of smoking history required (lung)"
+    },
+    "smoking_status_required": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Required smoking statuses (e.g. current, quit_lt_15y)"
+    },
+    "min_apcs_score": {
+      "type": "integer",
+      "description": "Minimum APCS score required (colorectal)"
+    },
+    "sexually_active_required": {
+      "type": "boolean",
+      "description": "Whether sexual activity history is required (cervical)"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "cancer_type",
+    "test_type",
+    "frequency",
+    "evidence_level"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

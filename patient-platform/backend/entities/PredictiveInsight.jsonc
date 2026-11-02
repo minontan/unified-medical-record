@@ -1,0 +1,82 @@
+{
+  "name": "PredictiveInsight",
+  "type": "object",
+  "title": "Predictive Insight",
+  "description": "Human-readable, LLM-generated insight derived from a predictive model run",
+  "properties": {
+    "insight_type": {
+      "type": "string",
+      "enum": [
+        "trajectory_alert",
+        "trend_reversal",
+        "risk_threshold_crossed",
+        "intervention_opportunity",
+        "positive_progress",
+        "data_gap_warning",
+        "medication_effect"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Short headline for the insight"
+    },
+    "body": {
+      "type": "string",
+      "description": "Full plain-English explanation with evidence-based context"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "positive",
+        "warning",
+        "urgent"
+      ],
+      "default": "info"
+    },
+    "linked_model_type": {
+      "type": "string",
+      "description": "Which model_type generated this insight"
+    },
+    "linked_model_id": {
+      "type": "string",
+      "description": "ID of the PredictiveModel record"
+    },
+    "action_recommended": {
+      "type": "string",
+      "description": "Specific actionable recommendation"
+    },
+    "time_to_threshold_months": {
+      "type": "number",
+      "description": "Estimated months until a clinical threshold is crossed (if applicable)"
+    },
+    "is_dismissed": {
+      "type": "boolean",
+      "default": false
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "insight_type",
+    "title",
+    "body",
+    "severity"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

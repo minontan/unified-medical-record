@@ -1,0 +1,78 @@
+{
+  "name": "Doctor",
+  "type": "object",
+  "title": "Doctor",
+  "description": "A doctor or healthcare professional",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "specialty": {
+      "type": "string",
+      "enum": [
+        "general_practitioner",
+        "cardiologist",
+        "endocrinologist",
+        "internist",
+        "nephrologist",
+        "dietitian",
+        "other"
+      ]
+    },
+    "clinic_name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "accepts_new_patients": {
+      "type": "boolean",
+      "default": true
+    },
+    "bio": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "specialty"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "MedicalDocument",
+  "type": "object",
+  "title": "Medical Document",
+  "description": "A non-lab medical report or investigation document (radiology, ECG, spirometry, etc.)",
+  "properties": {
+    "doc_type": {
+      "type": "string",
+      "enum": [
+        "radiology",
+        "ecg",
+        "bmd",
+        "spirometry",
+        "microbiology",
+        "histopathology",
+        "ophthalmology",
+        "audiology",
+        "other"
+      ],
+      "description": "Type of medical document"
+    },
+    "title": {
+      "type": "string",
+      "description": "User-defined title or description (e.g. Chest X-Ray, Holter Monitor Report)"
+    },
+    "facility": {
+      "type": "string",
+      "description": "Hospital, clinic or radiology centre name"
+    },
+    "report_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the investigation or report"
+    },
+    "summary": {
+      "type": "string",
+      "description": "AI-extracted or user-entered summary / impression"
+    },
+    "file_uri": {
+      "type": "string",
+      "description": "Private storage URI of the uploaded file"
+    },
+    "notes": {
+      "type": "string",
+      "description": "User notes or comments"
+    }
+  },
+  "required": [
+    "doc_type",
+    "title",
+    "report_date"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

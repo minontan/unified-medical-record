@@ -1,0 +1,26 @@
+# ---- Secrets / environment: never track ----
+.env
+.env.*
+*.local
+
+# ---- Node ----
+node_modules/
+dist/
+dist-ssr/
+.output/
+.wrangler/
+
+# ---- Logs ----
+*.log
+
+# ---- OS / editor ----
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ---- Platform CLI local linkage (regenerated per machine, not portable) ----
+backend/.app.jsonc
+
+# Platform CLI recreates the conventional folder on link/dev - keep it out of git
+base44/

@@ -1,0 +1,17 @@
+{
+  "name": "dailyHealthNotifications",
+  "entry": "entry.ts",
+  "automations": [
+    {
+      "type": "scheduled",
+      "ends_type": "never",
+      "is_active": false,
+      "name": "Daily Health Notifications",
+      "repeat_interval": 1,
+      "repeat_unit": "days",
+      "schedule_mode": "recurring",
+      "schedule_type": "simple",
+      "start_time": "00:00"
+    }
+  ]
+}

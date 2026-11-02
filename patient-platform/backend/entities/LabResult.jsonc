@@ -1,0 +1,95 @@
+{
+  "name": "LabResult",
+  "type": "object",
+  "title": "Lab Result",
+  "description": "A single test result extracted from a laboratory report",
+  "properties": {
+    "test_name": {
+      "type": "string",
+      "description": "Name of the specific test (e.g. HAEMOGLOBIN, GLUCOSE, SGPT)"
+    },
+    "category": {
+      "type": "string",
+      "description": "Test panel/category (e.g. HAEMATOLOGY, LIPID PROFILE, LIVER FUNCTION TESTS)"
+    },
+    "numeric_result": {
+      "type": "number",
+      "description": "Numerical result value where applicable"
+    },
+    "text_result": {
+      "type": "string",
+      "description": "Text result for non-numerical results (e.g. NONREACTIVE, NEGATIVE, POSITIVE)"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement (e.g. G/DL, MMOL/L, %)"
+    },
+    "reference_range_low": {
+      "type": "number",
+      "description": "Lower bound of the normal reference range"
+    },
+    "reference_range_high": {
+      "type": "number",
+      "description": "Upper bound of the normal reference range"
+    },
+    "reference_range_text": {
+      "type": "string",
+      "description": "Reference range as text (e.g. <5.2, >1.04, 0-10)"
+    },
+    "collected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the sample was collected"
+    },
+    "lab_name": {
+      "type": "string",
+      "description": "Name of the laboratory"
+    },
+    "lab_report_id": {
+      "type": "string",
+      "description": "Unique report/pathlab number from the lab"
+    },
+    "source_file_url": {
+      "type": "string",
+      "description": "URL/URI of the primary uploaded file (legacy single file)"
+    },
+    "source_file_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URIs of all uploaded files (images/PDFs) associated with this report"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Any additional interpretation or comments from the report"
+    }
+  },
+  "required": [
+    "test_name",
+    "collected_at"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

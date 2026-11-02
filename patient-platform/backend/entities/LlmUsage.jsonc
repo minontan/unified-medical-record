@@ -1,0 +1,38 @@
+{
+  "name": "LlmUsage",
+  "type": "object",
+  "title": "LLM Usage",
+  "description": "Per-user daily LLM usage counters for quota enforcement (H4 fix)",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user whose usage this counts"
+    },
+    "usage_date": {
+      "type": "string",
+      "format": "date",
+      "description": "SGT date of the usage bucket (YYYY-MM-DD)"
+    },
+    "call_count": {
+      "type": "integer",
+      "default": 0,
+      "description": "Total LLM calls for this user on this date"
+    },
+    "purpose_counts": {
+      "type": "string",
+      "description": "JSON object of purpose -> call count (e.g. {\"translate_lab_terms\":3})"
+    }
+  },
+  "required": [
+    "user_email",
+    "usage_date"
+  ],
+  "rls": {
+    "create": false,
+    "read": {
+      "data.user_email": "{{user.email}}"
+    },
+    "update": false,
+    "delete": false
+  }
+}

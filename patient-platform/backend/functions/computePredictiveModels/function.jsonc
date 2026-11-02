@@ -1,0 +1,24 @@
+{
+  "name": "computePredictiveModels",
+  "entry": "entry.ts",
+  "automations": [
+    {
+      "type": "entity",
+      "entity_name": "LabResult",
+      "event_types": [
+        "create"
+      ],
+      "is_active": false,
+      "name": "Recompute Predictive Models on New Lab Result"
+    },
+    {
+      "type": "entity",
+      "entity_name": "HealthMeasurement",
+      "event_types": [
+        "create"
+      ],
+      "is_active": false,
+      "name": "Recompute Predictive Models on New Measurement"
+    }
+  ]
+}

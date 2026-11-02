@@ -1,0 +1,138 @@
+{
+  "name": "Prescription",
+  "type": "object",
+  "properties": {
+    "resident_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "pso_number": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "in_review",
+        "changes_requested",
+        "approved",
+        "printed",
+        "signed",
+        "transmitted",
+        "void"
+      ],
+      "default": "draft"
+    },
+    "version": {
+      "type": "integer",
+      "default": 1
+    },
+    "prescription_date": {
+      "type": "string"
+    },
+    "facility": {
+      "type": "string"
+    },
+    "facility_address": {
+      "type": "string"
+    },
+    "ward": {
+      "type": "string"
+    },
+    "bed": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "drug_allergy": {
+      "type": "string"
+    },
+    "intake_id": {
+      "type": "string"
+    },
+    "doctor_name": {
+      "type": "string"
+    },
+    "doctor_mcr": {
+      "type": "string"
+    },
+    "pharmacist_name": {
+      "type": "string"
+    },
+    "attestation": {
+      "type": "string"
+    },
+    "review_notes": {
+      "type": "string"
+    },
+    "print_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "signed_by": {
+      "type": "string"
+    },
+    "signed_at": {
+      "type": "string"
+    },
+    "transmitted_to": {
+      "type": "string"
+    },
+    "transmitted_at": {
+      "type": "string"
+    },
+    "void_reason": {
+      "type": "string"
+    },
+    "docx_file_uri": {
+      "type": "string"
+    },
+    "docx_version": {
+      "type": "integer"
+    },
+    "docx_generated_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "resident_id",
+    "trace_id",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

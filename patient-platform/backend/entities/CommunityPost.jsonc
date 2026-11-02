@@ -1,0 +1,104 @@
+{
+  "name": "CommunityPost",
+  "type": "object",
+  "title": "Community Post",
+  "description": "A community post where users share their chronic disease journey",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "journey",
+        "lifestyle",
+        "nutrition",
+        "exercise",
+        "mental_health",
+        "medication",
+        "tips",
+        "question",
+        "success_story"
+      ]
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hypertension",
+          "diabetes",
+          "hyperlipidaemia"
+        ]
+      }
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "privacy": {
+      "type": "string",
+      "enum": [
+        "public",
+        "anonymous"
+      ],
+      "default": "public",
+      "description": "public = show real name, anonymous = show as Anonymous"
+    },
+    "likes_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "liked_by": {
+      "type": "string",
+      "description": "Comma separated emails of users who liked"
+    },
+    "reactions": {
+      "type": "string",
+      "description": "JSON string: { emoji: { count: number, users: string[] } }"
+    },
+    "comments_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "group_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "category",
+    "author_name"
+  ],
+  "rls": {
+    "create": {},
+    "read": {},
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

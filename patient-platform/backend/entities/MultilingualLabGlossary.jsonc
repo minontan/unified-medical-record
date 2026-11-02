@@ -1,0 +1,71 @@
+{
+  "name": "MultilingualLabGlossary",
+  "type": "object",
+  "title": "Multilingual Lab Glossary",
+  "description": "User/LLM-learned glossary mapping non-English lab terms to standard English equivalents",
+  "properties": {
+    "source_term": {
+      "type": "string",
+      "description": "The original lab term in the source language"
+    },
+    "english_term": {
+      "type": "string",
+      "description": "Standardised English translation"
+    },
+    "language_code": {
+      "type": "string",
+      "enum": [
+        "ms",
+        "id",
+        "th",
+        "vi",
+        "km",
+        "my",
+        "ja",
+        "ko"
+      ],
+      "description": "BCP-47 language code of the source term"
+    },
+    "category": {
+      "type": "string",
+      "description": "Lab panel category e.g. Haematology, Liver Function"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "seed",
+        "llm_learned",
+        "user_added"
+      ],
+      "default": "llm_learned"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes or clinical context for this glossary entry"
+    }
+  },
+  "required": [
+    "source_term",
+    "english_term",
+    "language_code"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

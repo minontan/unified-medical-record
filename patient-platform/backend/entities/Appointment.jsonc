@@ -1,0 +1,62 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "title": "Appointment",
+  "description": "An appointment or consultation request with a doctor",
+  "properties": {
+    "doctor_id": {
+      "type": "string"
+    },
+    "doctor_name": {
+      "type": "string"
+    },
+    "patient_name": {
+      "type": "string"
+    },
+    "appointment_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "requested",
+        "confirmed",
+        "completed",
+        "cancelled"
+      ],
+      "default": "requested"
+    },
+    "share_measurements": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "doctor_id",
+    "doctor_name",
+    "patient_name",
+    "appointment_date",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "onCaregiverConnectionChange",
+  "entry": "entry.ts",
+  "automations": [
+    {
+      "type": "entity",
+      "entity_name": "Connection",
+      "event_types": [
+        "create",
+        "update"
+      ],
+      "is_active": false,
+      "name": "Caregiver Connection Notifications"
+    }
+  ]
+}

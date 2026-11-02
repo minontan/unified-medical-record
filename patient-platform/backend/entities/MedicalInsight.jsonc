@@ -1,0 +1,121 @@
+{
+  "name": "MedicalInsight",
+  "type": "object",
+  "title": "Medical Insight",
+  "description": "Evidence-based clinical pearls and insights matched algorithmically to user health profiles",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Concise heading for the insight"
+    },
+    "content": {
+      "type": "string",
+      "description": "Detailed information or recommendation text"
+    },
+    "cancer_type": {
+      "type": "string",
+      "enum": [
+        "breast",
+        "cervical",
+        "colorectal",
+        "lung",
+        "liver",
+        "gastric",
+        "general"
+      ],
+      "description": "The cancer type this insight relates to"
+    },
+    "insight_category": {
+      "type": "string",
+      "enum": [
+        "screening_recommendation",
+        "risk_factor",
+        "management_pathway",
+        "prevention",
+        "red_flag",
+        "general_info"
+      ],
+      "description": "Category of the insight"
+    },
+    "evidence_level": {
+      "type": "string",
+      "description": "e.g. Grade A, Grade B, WHO Strong, APASL"
+    },
+    "source": {
+      "type": "string",
+      "description": "e.g. USPSTF, Singapore MOH, Malaysia CPG, APASL"
+    },
+    "min_age": {
+      "type": "integer",
+      "description": "Minimum age for this insight to apply (inclusive)"
+    },
+    "max_age": {
+      "type": "integer",
+      "description": "Maximum age for this insight to apply (inclusive)"
+    },
+    "biological_sex": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "all"
+      ],
+      "default": "all"
+    },
+    "requires_smoker": {
+      "type": "boolean",
+      "description": "Only show to current/former smokers"
+    },
+    "requires_sexually_active": {
+      "type": "boolean",
+      "description": "Only show to those with sexual history"
+    },
+    "requires_high_risk_breast": {
+      "type": "boolean",
+      "description": "Only show to high-risk breast cancer individuals"
+    },
+    "requires_family_history": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Show if user has family history of these cancer types"
+    },
+    "min_pack_years": {
+      "type": "number",
+      "description": "Minimum pack-years required for this insight"
+    },
+    "min_apcs_score": {
+      "type": "integer",
+      "description": "Minimum APCS score required"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "cancer_type",
+    "insight_category"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

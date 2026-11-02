@@ -1,0 +1,78 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "title": "Notification",
+  "description": "In-app notifications for the user",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user this notification belongs to"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "caregiver_invite_sent",
+        "caregiver_invite_received",
+        "caregiver_approved",
+        "caregiver_revoked",
+        "lab_result_error",
+        "lab_result_critical",
+        "measurement_reminder",
+        "insight_update",
+        "general"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "link_page": {
+      "type": "string",
+      "description": "Page name to navigate to when clicked"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ],
+      "default": "info"
+    }
+  },
+  "required": [
+    "user_email",
+    "type",
+    "title",
+    "message"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "service"
+          }
+        }
+      ]
+    },
+    "read": {
+      "data.user_email": "{{user.email}}"
+    },
+    "update": {
+      "data.user_email": "{{user.email}}"
+    },
+    "delete": {
+      "data.user_email": "{{user.email}}"
+    }
+  }
+}

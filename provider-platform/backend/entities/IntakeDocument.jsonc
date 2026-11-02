@@ -1,0 +1,92 @@
+{
+  "name": "IntakeDocument",
+  "type": "object",
+  "properties": {
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "screenshot",
+        "document",
+        "online_form"
+      ]
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "file_uri": {
+      "type": "string"
+    },
+    "file_type": {
+      "type": "string"
+    },
+    "source_hash": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "quarantined"
+      ],
+      "default": "verified"
+    },
+    "pso_number": {
+      "type": "string"
+    },
+    "resident_name_detected": {
+      "type": "string"
+    },
+    "resident_id_detected": {
+      "type": "string"
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "remarks": {
+      "type": "string"
+    },
+    "extracted_data": {
+      "type": "object"
+    },
+    "resident_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_type",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

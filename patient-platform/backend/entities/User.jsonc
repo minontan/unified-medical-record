@@ -1,0 +1,63 @@
+{
+  "name": "User",
+  "type": "object",
+  "title": "User",
+  "description": "Extended user profile with invite and privacy settings",
+  "properties": {
+    "invites_remaining": {
+      "type": "integer",
+      "default": 5,
+      "description": "Number of invites the user can send"
+    },
+    "is_anonymous": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user wants to remain anonymous in the app"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Anonymous display name if user chooses anonymity"
+    },
+    "privacy_measurements": {
+      "type": "string",
+      "enum": [
+        "private",
+        "doctors_only",
+        "community"
+      ],
+      "default": "private",
+      "description": "Who can see health measurements"
+    },
+    "privacy_appointments": {
+      "type": "string",
+      "enum": [
+        "private",
+        "doctors_only"
+      ],
+      "default": "private",
+      "description": "Who can see appointments"
+    },
+    "privacy_posts": {
+      "type": "string",
+      "enum": [
+        "anonymous",
+        "named"
+      ],
+      "default": "anonymous",
+      "description": "How to display name in posts"
+    },
+    "allow_discovery": {
+      "type": "boolean",
+      "default": false,
+      "description": "Allow others to find and add as friend"
+    }
+  },
+  "required": [
+    "display_name"
+  ],
+  "rls": {
+    "read": { "created_by_id": "{{user.id}}" },
+    "update": { "created_by_id": "{{user.id}}" },
+    "delete": false
+  }
+}
